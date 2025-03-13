@@ -86,7 +86,7 @@ export default function SkillsSection() {
       variants={containerVariants}
       initial="hidden"
       animate="visible"
-      sx={{ py: 10, pb: 25 }}
+      sx={{ py: 10 }}
     >
       <Container maxWidth="lg">
         <Box

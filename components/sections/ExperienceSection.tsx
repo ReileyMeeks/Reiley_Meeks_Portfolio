@@ -59,7 +59,7 @@ export default function ExperienceSection() {
       variants={containerVariants}
       initial="hidden"
       animate="visible"
-      sx={{ py: 10, pb: 25 }}
+      sx={{ py: 10 }}
     >
       <Container maxWidth="lg">
         <Typography
