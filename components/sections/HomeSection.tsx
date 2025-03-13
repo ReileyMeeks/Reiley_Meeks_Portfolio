@@ -1,5 +1,6 @@
-import { Box, Typography, Container } from "@mui/material";
+import { Box, Typography, Container, IconButton } from "@mui/material";
 import { motion } from "framer-motion";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 const fadeInVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -111,6 +112,50 @@ export default function HomeSection() {
               I&apos;m a Software Engineer passionate about technology, creating beautiful
               and functional websites, apps, and all things tech.
             </Typography>
+          </Box>
+
+          {/* Social Media Links */}
+          <Box
+            component={motion.div}
+            variants={childVariants}
+            sx={{
+              display: "flex",
+              gap: 3,
+              mt: 4,
+            }}
+          >
+            <IconButton
+              href="https://github.com/ReileyMeeks"
+              target="_blank"
+              rel="noopener noreferrer"
+              sx={{
+                color: "rgba(255, 255, 255, 0.9)",
+                fontSize: "2rem",
+                transition: "all 0.3s ease",
+                "&:hover": {
+                  color: "#9f7aea",
+                  transform: "translateY(-3px)",
+                },
+              }}
+            >
+              <FaGithub />
+            </IconButton>
+            <IconButton
+              href="https://linkedin.com/in/reiley-meeks"
+              target="_blank"
+              rel="noopener noreferrer"
+              sx={{
+                color: "rgba(255, 255, 255, 0.9)",
+                fontSize: "2rem",
+                transition: "all 0.3s ease",
+                "&:hover": {
+                  color: "#ed64a6",
+                  transform: "translateY(-3px)",
+                },
+              }}
+            >
+              <FaLinkedin />
+            </IconButton>
           </Box>
         </Box>
       </Container>
