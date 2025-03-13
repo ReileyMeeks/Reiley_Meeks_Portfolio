@@ -52,8 +52,8 @@ export default function Navigation() {
     <Box
       sx={{
         position: "fixed",
-        top: "5%",
-        right: "150px",
+        top: "2%",
+        right: "30px",
         transform: "translateY(0%)",
         zIndex: 2,
       }}
