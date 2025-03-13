@@ -1,42 +1,15 @@
+// components/sections/SkillsSection.tsx
 import { Box, Container, Typography, Grid, Paper } from "@mui/material";
 import { motion } from "framer-motion";
-import { FaCode, FaServer, FaMobile, FaDatabase } from "react-icons/fa";
-
-const skillsData = [
-  {
-    title: "Frontend Development",
-    icon: FaCode,
-    description:
-      "React, TypeScript, Next.js, and modern CSS frameworks for building responsive web applications.",
-  },
-  {
-    title: "Backend Development",
-    icon: FaServer,
-    description:
-      "Node.js, Python, and RESTful API design with focus on scalability and performance.",
-  },
-  {
-    title: "Mobile Development",
-    icon: FaMobile,
-    description:
-      "React Native and Flutter for cross-platform mobile application development.",
-  },
-  {
-    title: "Database Design",
-    icon: FaDatabase,
-    description:
-      "MongoDB, PostgreSQL, and Redis for efficient data storage and retrieval.",
-  },
-];
+import { SkillPill } from "../SkillPill";
+import { FaCode, FaServer, FaCloud, FaTools } from "react-icons/fa";
 
 const containerVariants = {
-  hidden: { opacity: 0 },
+  hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.2,
-    },
+    y: 0,
+    transition: { duration: 0.5, ease: "easeOut", staggerChildren: 0.1 },
   },
 };
 
@@ -52,6 +25,58 @@ const cardVariants = {
   },
 };
 
+// Define your skill categories and key skills
+const categories = [
+  {
+    category: "Languages",
+    icon: FaCode,
+    description: "Core programming languages I work with daily",
+    skills: [
+      { name: "Python", proficiency: 100, color: "linear-gradient(45deg, #3776ab, #4CAF50)" },
+      { name: "Swift", proficiency: 100, color: "linear-gradient(45deg, #ffac45, #ff6b6b)" },
+      { name: "TypeScript", proficiency: 90, color: "linear-gradient(45deg, #007acc, #00bcd4)" },
+      { name: "JavaScript", proficiency: 90, color: "linear-gradient(45deg, #f7df1e, #ffd700)" },
+      { name: "Java", proficiency: 80, color: "linear-gradient(45deg, #b07219, #e65100)" },
+      { name: "Go", proficiency: 70, color: "linear-gradient(45deg, #00ADD8, #00bcd4)" },
+      { name: "C/C++", proficiency: 65, color: "linear-gradient(45deg, #00599C, #2196F3)" },
+    ],
+  },
+  {
+    category: "Frameworks",
+    icon: FaServer,
+    description: "Modern frameworks and libraries I specialize in",
+    skills: [
+      { name: "Next.js", proficiency: 90, color: "linear-gradient(45deg, #000000, #333333)" },
+      { name: "React.js", proficiency: 90, color: "linear-gradient(45deg, #61dafb, #00bcd4)" },
+      { name: "SwiftUI", proficiency: 90, color: "linear-gradient(45deg, #ff2d55, #ff4081)" },
+      { name: "Flask", proficiency: 80, color: "linear-gradient(45deg, #000000, #4CAF50)" },
+      { name: "Remix", proficiency: 70, color: "linear-gradient(45deg, #e91e63, #ff4081)" },
+    ],
+  },
+  {
+    category: "Cloud & Services",
+    icon: FaCloud,
+    description: "Cloud platforms and services I work with",
+    skills: [
+      { name: "Azure", proficiency: 100, color: "linear-gradient(45deg, #0078d4, #00bcd4)" },
+      { name: "MongoDB", proficiency: 85, color: "linear-gradient(45deg, #4db33d, #8bc34a)" },
+      { name: "Google Cloud", proficiency: 70, color: "linear-gradient(45deg, #4285f4, #00bcd4)" },
+    ],
+  },
+  {
+    category: "Technologies",
+    icon: FaTools,
+    description: "Development tools and technologies I use",
+    skills: [
+      { name: "GitHub", proficiency: 100, color: "linear-gradient(45deg, #181717, #333333)" },
+      { name: "Xcode", proficiency: 100, color: "linear-gradient(45deg, #2496ed, #00bcd4)" },
+      { name: "Cursor AI", proficiency: 100, color: "linear-gradient(45deg, #326ce5, #2196F3)" },
+      { name: "VS Code", proficiency: 100, color: "linear-gradient(45deg, #232f3e, #1976D2)" },
+      { name: "Docker", proficiency: 90, color: "linear-gradient(45deg, #f1e05a, #ffd700)" },
+    ],
+  },
+];
+
 export default function SkillsSection() {
   return (
     <Box
@@ -60,10 +85,7 @@ export default function SkillsSection() {
       variants={containerVariants}
       initial="hidden"
       animate="visible"
-      sx={{
-        minHeight: "100vh",
-        py: 10,
-      }}
+      sx={{ py: 10, pb: 25 }}
     >
       <Container maxWidth="lg">
         <Box
@@ -87,7 +109,7 @@ export default function SkillsSection() {
                 transform: "translateX(-50%)",
                 width: "100px",
                 height: "4px",
-                background: "linear-gradient(to right, #3182ce, #805ad5)",
+                background: "linear-gradient(to right, #805ad5, #3182ce)",
                 borderRadius: "2px",
               },
             }}
@@ -98,16 +120,17 @@ export default function SkillsSection() {
                 fontSize: { xs: "2.5rem", md: "4rem" },
                 fontWeight: "bold",
                 textAlign: "center",
-                background: "linear-gradient(to right, #3182ce, #805ad5)",
+                background: "linear-gradient(to right, #805ad5, #3182ce)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
               }}
             >
-              Skills &amp; Experience
+              Skills
             </Typography>
           </Box>
+
           <Grid container spacing={4}>
-            {skillsData.map((skill, index) => (
+            {categories.map((cat, index) => (
               <Grid item xs={12} md={6} key={index}>
                 <Paper
                   component={motion.div}
@@ -145,34 +168,51 @@ export default function SkillsSection() {
                     sx={{
                       display: "flex",
                       flexDirection: "column",
-                      alignItems: "center",
-                      gap: 2,
+                      gap: 3,
                     }}
                   >
                     <Box
-                      component={skill.icon}
                       sx={{
-                        fontSize: "2.5rem",
-                        color: "#805ad5",
-                      }}
-                    />
-                    <Typography
-                      variant="h5"
-                      sx={{
-                        color: "rgba(255, 255, 255, 0.9)",
-                        fontWeight: "medium",
+                        display: "flex",
+                        alignItems: "center",
+                        gap: 2,
                       }}
                     >
-                      {skill.title}
-                    </Typography>
+                      <Box
+                        component={cat.icon}
+                        sx={{
+                          fontSize: "2rem",
+                          color: "#805ad5",
+                        }}
+                      />
+                      <Typography
+                        variant="h5"
+                        sx={{
+                          color: "rgba(255, 255, 255, 0.9)",
+                          fontWeight: "medium",
+                        }}
+                      >
+                        {cat.category}
+                      </Typography>
+                    </Box>
                     <Typography
                       sx={{
                         color: "rgba(255, 255, 255, 0.8)",
-                        textAlign: "center",
+                        mb: 2,
                       }}
                     >
-                      {skill.description}
+                      {cat.description}
                     </Typography>
+                    <Box sx={{ display: "flex", flexWrap: "wrap", gap: 2 }}>
+                      {cat.skills.map((skill) => (
+                        <SkillPill
+                          key={skill.name}
+                          name={skill.name}
+                          proficiency={skill.proficiency}
+                          color={skill.color}
+                        />
+                      ))}
+                    </Box>
                   </Box>
                 </Paper>
               </Grid>
@@ -182,4 +222,4 @@ export default function SkillsSection() {
       </Container>
     </Box>
   );
-} 
+}

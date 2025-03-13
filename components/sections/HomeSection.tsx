@@ -79,7 +79,7 @@ export default function HomeSection() {
                 WebkitTextFillColor: "transparent",
               }}
             >
-              Welcome to My Portfolio
+              Hi, I&apos;m Reiley Meeks
             </Typography>
           </Box>
           <Box
@@ -108,8 +108,8 @@ export default function HomeSection() {
                 maxWidth: "800px",
               }}
             >
-              I&apos;m a full-stack developer passionate about creating beautiful
-              and functional web experiences.
+              I&apos;m a Software Engineer passionate about technology, creating beautiful
+              and functional websites, apps, and all things tech.
             </Typography>
           </Box>
         </Box>

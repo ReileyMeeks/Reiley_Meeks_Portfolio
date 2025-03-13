@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import Navigation from "../components/Navigation";
 import HomeSection from "../components/sections/HomeSection";
 import SkillsSection from "../components/sections/SkillsSection";
+import ExperienceSection from "../components/sections/ExperienceSection";
+import EducationSection from "../components/sections/EducationSection";
 import ServicesSection from "../components/sections/ServicesSection";
 import ContactSection from "../components/sections/ContactSection";
 
@@ -147,6 +149,116 @@ export default function Home() {
               ease: "linear",
             }}
           />
+
+          {/* Animated Light Beams */}
+          {[...Array(3)].map((_, i) => (
+            <MotionBox
+              key={`beam-${i}`}
+              sx={{
+                position: "absolute",
+                top: `${Math.random() * 100}%`,
+                left: `${Math.random() * 100}%`,
+                width: "200px",
+                height: "200px",
+                background: `linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent)`,
+                filter: "blur(30px)",
+                transform: "rotate(45deg)",
+              }}
+              animate={{
+                x: [0, 100, 0],
+                y: [0, 50, 0],
+                rotate: [45, 90, 45],
+              }}
+              transition={{
+                duration: 15 + Math.random() * 10,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: Math.random() * 5,
+              }}
+            />
+          ))}
+
+          {/* Floating Particles */}
+          {[...Array(30)].map((_, i) => (
+            <MotionBox
+              key={`particle-${i}`}
+              sx={{
+                position: "absolute",
+                width: `${Math.random() * 4 + 2}px`,
+                height: `${Math.random() * 4 + 2}px`,
+                background: "rgba(255, 255, 255, 0.2)",
+                borderRadius: "50%",
+                filter: "blur(2px)",
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+              }}
+              animate={{
+                y: [0, -200, 0],
+                x: [0, Math.random() * 100 - 50, 0],
+                opacity: [0, 0.8, 0],
+              }}
+              transition={{
+                duration: Math.random() * 15 + 15,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: Math.random() * 10,
+              }}
+            />
+          ))}
+
+          {/* Dynamic Shapes */}
+          {[...Array(5)].map((_, i) => (
+            <MotionBox
+              key={`shape-${i}`}
+              sx={{
+                position: "absolute",
+                width: `${Math.random() * 200 + 100}px`,
+                height: `${Math.random() * 200 + 100}px`,
+                background: `linear-gradient(45deg, 
+                  rgba(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255}, 0.1),
+                  rgba(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255}, 0.1)
+                )`,
+                filter: "blur(40px)",
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                borderRadius: "50%",
+              }}
+              animate={{
+                scale: [1, 1.2, 1],
+                rotate: [0, 180, 0],
+                x: [0, Math.random() * 100 - 50, 0],
+                y: [0, Math.random() * 100 - 50, 0],
+              }}
+              transition={{
+                duration: Math.random() * 20 + 20,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: Math.random() * 5,
+              }}
+            />
+          ))}
+
+          {/* Ambient Light */}
+          <MotionBox
+            sx={{
+              position: "absolute",
+              top: "0",
+              left: "0",
+              right: "0",
+              bottom: "0",
+              background: "radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.05) 0%, transparent 70%)",
+              filter: "blur(30px)",
+            }}
+            animate={{
+              scale: [1, 1.3, 1],
+              opacity: [0.5, 0.8, 0.5],
+            }}
+            transition={{
+              duration: 10,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          />
         </Box>
 
         {/* Navigation */}
@@ -156,6 +268,8 @@ export default function Home() {
         <Box sx={{ position: "relative", zIndex: 1 }}>
           <HomeSection />
           <SkillsSection />
+          <ExperienceSection />
+          <EducationSection />
           <ServicesSection />
           <ContactSection />
         </Box>

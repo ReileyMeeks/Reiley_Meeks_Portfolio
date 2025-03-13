@@ -10,7 +10,9 @@ import CloseIcon from "@mui/icons-material/Close";
 // Menu items with proper section identifiers
 const menuItems = [
   { id: "home", label: "Home" },
-  { id: "skills", label: "Skills & Experience" },
+  { id: "skills", label: "Skills" },
+  { id: "experience", label: "Experience" },
+  { id: "education", label: "Education" },
   { id: "services", label: "Services" },
   { id: "contact", label: "Contact" },
 ];
@@ -25,7 +27,7 @@ const containerVariants = {
   },
   open: {
     width: "200px",       // Adjust as desired
-    height: "250px",       // Let the content determine the height
+    height: "350px",       // Let the content determine the height
     borderRadius: "30px",
     transition: { type: "spring", stiffness: 200, damping: 25, mass: 0.5 },
   },
