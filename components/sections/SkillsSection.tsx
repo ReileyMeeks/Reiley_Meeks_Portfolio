@@ -35,7 +35,7 @@ const categories = [
       { name: "Python", proficiency: 100, color: "linear-gradient(45deg, #3776ab, #4CAF50)" },
       { name: "Swift", proficiency: 100, color: "linear-gradient(45deg, #ffac45, #ff6b6b)" },
       { name: "TypeScript", proficiency: 90, color: "linear-gradient(45deg, #007acc, #00bcd4)" },
-      { name: "JavaScript", proficiency: 90, color: "linear-gradient(45deg, #f7df1e, #ffd700)" },
+      { name: "JavaScript", proficiency: 85, color: "linear-gradient(45deg, #f7df1e, #ffd700)" },
       { name: "Java", proficiency: 80, color: "linear-gradient(45deg, #b07219, #e65100)" },
       { name: "Go", proficiency: 70, color: "linear-gradient(45deg, #00ADD8, #00bcd4)" },
       { name: "C/C++", proficiency: 65, color: "linear-gradient(45deg, #00599C, #2196F3)" },
@@ -48,7 +48,7 @@ const categories = [
     skills: [
       { name: "Next.js", proficiency: 90, color: "linear-gradient(45deg, #000000, #333333)" },
       { name: "React.js", proficiency: 90, color: "linear-gradient(45deg, #61dafb, #00bcd4)" },
-      { name: "SwiftUI", proficiency: 90, color: "linear-gradient(45deg, #ff2d55, #ff4081)" },
+      { name: "SwiftUI", proficiency: 90, color: "linear-gradient(45deg, #ffac45, #ff6b6b)" },
       { name: "Flask", proficiency: 80, color: "linear-gradient(45deg, #000000, #4CAF50)" },
       { name: "Remix", proficiency: 70, color: "linear-gradient(45deg, #e91e63, #ff4081)" },
     ],
@@ -59,6 +59,7 @@ const categories = [
     description: "Cloud platforms and services I work with",
     skills: [
       { name: "Azure", proficiency: 100, color: "linear-gradient(45deg, #0078d4, #00bcd4)" },
+      { name: "Vercel", proficiency: 100, color: "linear-gradient(45deg, #000000, #333333)" },
       { name: "MongoDB", proficiency: 85, color: "linear-gradient(45deg, #4db33d, #8bc34a)" },
       { name: "Google Cloud", proficiency: 70, color: "linear-gradient(45deg, #4285f4, #00bcd4)" },
     ],

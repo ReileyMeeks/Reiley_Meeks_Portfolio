@@ -64,10 +64,26 @@ export default function EducationSection() {
                   boxShadow: "0 8px 30px rgba(0, 0, 0, 0.2)",
                 }}
                 sx={{
+                  position: "relative",
+                  overflow: "hidden",
                   background: "rgba(255, 255, 255, 0.1)",
                   backdropFilter: "blur(10px)",
                   border: "1px solid rgba(255, 255, 255, 0.1)",
                   p: 4,
+                  "&::before": {
+                    content: '""',
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    background: "linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent)",
+                    transform: "translateX(-100%)",
+                    transition: "transform 0.6s",
+                  },
+                  "&:hover::before": {
+                    transform: "translateX(100%)",
+                  },
                 }}
               >
                 <Typography variant="h5" sx={{ fontWeight: "bold", color: "white" }}>
