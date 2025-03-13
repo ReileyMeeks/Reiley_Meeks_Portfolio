@@ -13,11 +13,11 @@ import {
 import { motion } from "framer-motion";
 
 const projectTypes = [
-  "Web Application",
-  "Mobile App",
-  "API Integration",
-  "Database Design",
+  "Web/Mobile Application",
+  "AI Chatbot",
+  "Tech Consulting",
   "UI/UX Design",
+  "Recruitment",
   "Other",
 ];
 
