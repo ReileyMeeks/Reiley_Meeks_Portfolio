@@ -194,7 +194,7 @@ export default function ContactSection() {
               />
               <FormControl fullWidth>
                 <InputLabel
-                  id="project-type-label"
+                  id="contact-reason-label"
                   sx={{
                     color: "rgba(255, 255, 255, 0.7)",
                     "&.Mui-focused": {
@@ -202,11 +202,11 @@ export default function ContactSection() {
                     },
                   }}
                 >
-                  Project Type
+                  Contact Reason
                 </InputLabel>
                 <Select
-                  labelId="project-type-label"
-                  label="Project Type"
+                  labelId="contact-reason-label"
+                  label="Contact Reason"
                   defaultValue=""
                   sx={{
                     color: "white",
