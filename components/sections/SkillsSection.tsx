@@ -30,7 +30,7 @@ const categories = [
   {
     category: "Languages",
     icon: FaCode,
-    description: "Core programming languages I work with daily",
+    description: "Core programming languages;",
     skills: [
       { name: "Python", proficiency: 100, color: "linear-gradient(45deg, #3776ab, #4CAF50)" },
       { name: "Swift", proficiency: 100, color: "linear-gradient(45deg, #ffac45, #ff6b6b)" },
@@ -44,7 +44,7 @@ const categories = [
   {
     category: "Frameworks",
     icon: FaServer,
-    description: "Modern frameworks and libraries I specialize in",
+    description: "Specialize in modern frameworks and libraries;",
     skills: [
       { name: "Next.js", proficiency: 90, color: "linear-gradient(45deg, #000000, #333333)" },
       { name: "React.js", proficiency: 90, color: "linear-gradient(45deg, #61dafb, #00bcd4)" },
@@ -56,7 +56,7 @@ const categories = [
   {
     category: "Cloud & Services",
     icon: FaCloud,
-    description: "Cloud platforms and services I work with",
+    description: "Cloud platforms and services;",
     skills: [
       { name: "Azure", proficiency: 100, color: "linear-gradient(45deg, #0078d4, #00bcd4)" },
       { name: "Vercel", proficiency: 100, color: "linear-gradient(45deg, #000000, #333333)" },
@@ -67,7 +67,7 @@ const categories = [
   {
     category: "Technologies",
     icon: FaTools,
-    description: "Development tools and technologies I use",
+    description: "Development tools and technologies;",
     skills: [
       { name: "GitHub", proficiency: 100, color: "linear-gradient(45deg, #181717, #333333)" },
       { name: "Xcode", proficiency: 100, color: "linear-gradient(45deg, #2496ed, #00bcd4)" },

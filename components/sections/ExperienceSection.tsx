@@ -1,6 +1,9 @@
 // components/sections/ExperienceSection.tsx
-import { Box, Container, Typography, Grid, Paper, List, ListItem, ListItemText } from "@mui/material";
+import { Box, Container, Typography, Grid, Paper, List, ListItem, ListItemText, Button } from "@mui/material";
 import { motion } from "framer-motion";
+import { useState } from "react";
+import { FaFileAlt } from "react-icons/fa";
+import ResumeModal from "../ResumeModal";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -52,6 +55,8 @@ const experiences = [
 ];
 
 export default function ExperienceSection() {
+  const [isResumeOpen, setIsResumeOpen] = useState(false);
+
   return (
     <Box
       component={motion.section}
@@ -129,6 +134,46 @@ export default function ExperienceSection() {
             </Grid>
           ))}
         </Grid>
+
+        {/* Resume Button */}
+        <Box
+          component={motion.div}
+          variants={cardVariants}
+          sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            mt: 6,
+          }}
+        >
+          <Button
+            variant="contained"
+            startIcon={<FaFileAlt />}
+            onClick={() => setIsResumeOpen(true)}
+            sx={{
+              background: "linear-gradient(45deg, #3182ce, #805ad5)",
+              color: "white",
+              px: 4,
+              py: 1.5,
+              fontSize: "1.1rem",
+              borderRadius: "12px",
+              textTransform: "none",
+              "&:hover": {
+                background: "linear-gradient(45deg, #2c5282, #6b46c1)",
+                transform: "translateY(-2px)",
+                boxShadow: "0 8px 30px rgba(0, 0, 0, 0.2)",
+              },
+              transition: "all 0.3s ease",
+            }}
+          >
+            View Resume
+          </Button>
+        </Box>
+
+        {/* Resume Modal */}
+        <ResumeModal
+          open={isResumeOpen}
+          onClose={() => setIsResumeOpen(false)}
+        />
       </Container>
     </Box>
   );
