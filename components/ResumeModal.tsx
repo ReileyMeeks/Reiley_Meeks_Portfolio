@@ -1,4 +1,5 @@
-import { Modal, Box, IconButton, Stack, Button, useMediaQuery, useTheme } from '@mui/material';
+import { useEffect } from 'react';
+import { Modal, Box, IconButton, Button, useMediaQuery, useTheme } from '@mui/material';
 import { IoMdClose } from 'react-icons/io';
 import { FaDownload } from 'react-icons/fa';
 import { motion } from 'framer-motion';
@@ -11,7 +12,7 @@ interface ResumeModalProps {
 export default function ResumeModal({ open, onClose }: ResumeModalProps) {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
-
+  
   const handleDownload = () => {
     const link = document.createElement('a');
     link.href = '/assets/Reiley_Meeks_SoftwareEngineer_Resume.pdf';
@@ -20,6 +21,21 @@ export default function ResumeModal({ open, onClose }: ResumeModalProps) {
     link.click();
     document.body.removeChild(link);
   };
+  
+  const openPdfInNewTab = () => {
+    window.open('/assets/Reiley_Meeks_SoftwareEngineer_Resume.pdf', '_blank');
+  };
+  
+  // On mobile, open PDF in new tab instead of showing modal
+  useEffect(() => {
+    if (open && isMobile) {
+      openPdfInNewTab();
+      onClose();
+    }
+  }, [open, isMobile, onClose]);
+  
+  // If mobile, don't render the modal content
+  if (isMobile) return null;
 
   return (
     <Modal
@@ -39,24 +55,16 @@ export default function ResumeModal({ open, onClose }: ResumeModalProps) {
         exit={{ opacity: 0, scale: 0.9 }}
         sx={{
           position: 'relative',
-          width: '95vw',
-          height: '95vh',
+          width: '90vw',
+          height: '90vh',
           bgcolor: 'rgba(0, 0, 0, 0.8)',
           borderRadius: 2,
           backdropFilter: 'blur(10px)',
           border: '1px solid rgba(255, 255, 255, 0.1)',
           p: 2,
-          display: 'flex',
-          flexDirection: 'column',
         }}
       >
-        <Stack
-          direction="row"
-          justifyContent="flex-end"
-          alignItems="center"
-          spacing={2}
-          sx={{ mb: 2 }}
-        >
+        <Box sx={{ position: 'absolute', right: 8, top: 8, display: 'flex', gap: 1 }}>
           <Button
             startIcon={<FaDownload />}
             onClick={handleDownload}
@@ -70,7 +78,7 @@ export default function ResumeModal({ open, onClose }: ResumeModalProps) {
               textTransform: 'none',
             }}
           >
-            {isMobile ? 'Download' : 'Download PDF'}
+            Download
           </Button>
           <IconButton
             onClick={onClose}
@@ -84,54 +92,17 @@ export default function ResumeModal({ open, onClose }: ResumeModalProps) {
           >
             <IoMdClose />
           </IconButton>
-        </Stack>
-
-        <Box
-          sx={{
-            flex: 1,
-            overflow: 'hidden',
-            borderRadius: 1,
-            position: 'relative',
-            bgcolor: 'white',
-          }}
-        >
-          {isMobile ? (
-            <iframe
-              src={`/assets/Reiley_Meeks_SoftwareEngineer_Resume.pdf#view=FitH&scrollbar=1&toolbar=0&statusbar=0&messages=0&navpanes=0`}
-              style={{
-                width: '100%',
-                height: '100%',
-                border: 'none',
-                borderRadius: '4px',
-                overflow: 'auto',
-                WebkitOverflowScrolling: 'touch',
-              }}
-              title="Resume PDF"
-            />
-          ) : (
-            <object
-              data="/assets/Reiley_Meeks_SoftwareEngineer_Resume.pdf"
-              type="application/pdf"
-              style={{
-                width: '100%',
-                height: '100%',
-                border: 'none',
-                borderRadius: '4px',
-              }}
-            >
-              <iframe
-                src="/assets/Reiley_Meeks_SoftwareEngineer_Resume.pdf"
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  border: 'none',
-                  borderRadius: '4px',
-                }}
-                title="Resume PDF"
-              />
-            </object>
-          )}
         </Box>
+        <Box
+          component="iframe"
+          src="/assets/Reiley_Meeks_SoftwareEngineer_Resume.pdf"
+          sx={{
+            width: '100%',
+            height: '100%',
+            border: 'none',
+            borderRadius: 1,
+          }}
+        />
       </Box>
     </Modal>
   );
