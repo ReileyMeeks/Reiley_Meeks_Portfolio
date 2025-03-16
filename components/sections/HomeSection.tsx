@@ -80,7 +80,7 @@ export default function HomeSection() {
                 WebkitTextFillColor: "transparent",
               }}
             >
-              Hi, I&apos;m Reiley Meeks
+              Hello World, I&apos;m Reiley Meeks
             </Typography>
           </Box>
           <Box
