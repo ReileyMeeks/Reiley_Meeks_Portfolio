@@ -1,3 +1,4 @@
+import { useState, FormEvent, ChangeEvent } from "react";
 import {
   Box,
   Container,
@@ -9,6 +10,10 @@ import {
   FormControl,
   InputLabel,
   Select,
+  Snackbar,
+  Alert,
+  CircularProgress,
+  SelectChangeEvent,
 } from "@mui/material";
 import { motion } from "framer-motion";
 
@@ -45,6 +50,147 @@ const cardVariants = {
 };
 
 export default function ContactSection() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    contactReason: "",
+    message: "",
+  });
+  const [errors, setErrors] = useState({
+    name: false,
+    email: false,
+    contactReason: false,
+    message: false,
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [alert, setAlert] = useState<{
+    open: boolean;
+    message: string;
+    severity: "success" | "error";
+  }>({
+    open: false,
+    message: "",
+    severity: "success",
+  });
+
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+    // Clear error when user starts typing
+    if (errors[name as keyof typeof errors]) {
+      setErrors({
+        ...errors,
+        [name]: false,
+      });
+    }
+  };
+  
+  const handleSelectChange = (e: SelectChangeEvent) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+    // Clear error when user selects an option
+    if (errors[name as keyof typeof errors]) {
+      setErrors({
+        ...errors,
+        [name]: false,
+      });
+    }
+  };
+
+  const validateForm = () => {
+    const newErrors = {
+      name: !formData.name,
+      email: !formData.email || !/^\S+@\S+\.\S+$/.test(formData.email),
+      contactReason: !formData.contactReason,
+      message: !formData.message,
+    };
+    
+    setErrors(newErrors);
+    return !Object.values(newErrors).some(Boolean);
+  };
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    
+    if (!validateForm()) {
+      setAlert({
+        open: true,
+        message: "Please fill in all required fields correctly",
+        severity: "error",
+      });
+      return;
+    }
+    
+    setIsSubmitting(true);
+    
+    try {
+      // Prepare form data for sending
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        contact_reason: formData.contactReason,
+        message: formData.message,
+      };
+
+      // For testing purposes, let's always use the main endpoint
+      // Client-side environment variables need to be prefixed with NEXT_PUBLIC_
+      const endpoint = '/api/contact';
+      
+      console.log(`Sending form submission to: ${endpoint}`);
+
+      // Send the email using fetch to your own API endpoint
+      const response = await fetch(endpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(templateParams),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        console.error('API error response:', errorData);
+        throw new Error(errorData.error || 'Failed to send message');
+      }
+
+      // Reset form on success
+      setFormData({
+        name: "",
+        email: "",
+        contactReason: "",
+        message: "",
+      });
+      
+      setAlert({
+        open: true,
+        message: "Your message has been sent! I'll get back to you soon.",
+        severity: "success",
+      });
+    } catch (error) {
+      console.error("Error sending email:", error);
+      setAlert({
+        open: true,
+        message: "Failed to send message. Please try again later.",
+        severity: "error",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleCloseAlert = () => {
+    setAlert({
+      ...alert,
+      open: false,
+    });
+  };
+
   return (
     <Box
       component={motion.section}
@@ -133,6 +279,7 @@ export default function ContactSection() {
           >
             <Box
               component="form"
+              onSubmit={handleSubmit}
               sx={{
                 display: "flex",
                 flexDirection: "column",
@@ -142,6 +289,11 @@ export default function ContactSection() {
               <TextField
                 required
                 label="Name"
+                name="name"
+                value={formData.name}
+                onChange={handleInputChange}
+                error={errors.name}
+                helperText={errors.name ? "Name is required" : ""}
                 variant="outlined"
                 fullWidth
                 sx={{
@@ -162,13 +314,21 @@ export default function ContactSection() {
                     "&.Mui-focused": {
                       color: "#805ad5",
                     },
+                  },
+                  "& .MuiFormHelperText-root": {
+                    color: "#f44336",
                   },
                 }}
               />
               <TextField
                 required
                 label="Email"
+                name="email"
                 type="email"
+                value={formData.email}
+                onChange={handleInputChange}
+                error={errors.email}
+                helperText={errors.email ? "Valid email is required" : ""}
                 variant="outlined"
                 fullWidth
                 sx={{
@@ -190,9 +350,12 @@ export default function ContactSection() {
                       color: "#805ad5",
                     },
                   },
+                  "& .MuiFormHelperText-root": {
+                    color: "#f44336",
+                  },
                 }}
               />
-              <FormControl fullWidth>
+              <FormControl fullWidth error={errors.contactReason}>
                 <InputLabel
                   id="contact-reason-label"
                   sx={{
@@ -207,7 +370,9 @@ export default function ContactSection() {
                 <Select
                   labelId="contact-reason-label"
                   label="Contact Reason"
-                  defaultValue=""
+                  name="contactReason"
+                  value={formData.contactReason}
+                  onChange={handleSelectChange}
                   sx={{
                     color: "white",
                     "& .MuiOutlinedInput-notchedOutline": {
@@ -227,12 +392,22 @@ export default function ContactSection() {
                     </MenuItem>
                   ))}
                 </Select>
+                {errors.contactReason && (
+                  <Typography variant="caption" sx={{ color: "#f44336", ml: 2, mt: 0.5 }}>
+                    Please select a contact reason
+                  </Typography>
+                )}
               </FormControl>
               <TextField
                 required
                 label="Message"
+                name="message"
                 multiline
                 rows={6}
+                value={formData.message}
+                onChange={handleInputChange}
+                error={errors.message}
+                helperText={errors.message ? "Message is required" : ""}
                 variant="outlined"
                 fullWidth
                 sx={{
@@ -254,31 +429,60 @@ export default function ContactSection() {
                       color: "#805ad5",
                     },
                   },
+                  "& .MuiFormHelperText-root": {
+                    color: "#f44336",
+                  },
                 }}
               />
               <Button
+                type="submit"
                 variant="contained"
                 size="large"
+                disabled={isSubmitting}
                 fullWidth
                 sx={{
-                  background: "rgba(255, 255, 255, 0.1)",
+                  background: "linear-gradient(to right, rgba(128, 90, 213, 0.8), rgba(49, 130, 206, 0.8))",
                   backdropFilter: "blur(10px)",
                   border: "1px solid rgba(255, 255, 255, 0.1)",
                   color: "white",
                   "&:hover": {
-                    background: "rgba(255, 255, 255, 0.2)",
+                    background: "linear-gradient(to right, rgba(128, 90, 213, 0.9), rgba(49, 130, 206, 0.9))",
                     transform: "translateY(-2px)",
                     boxShadow: "0 4px 20px rgba(0, 0, 0, 0.2)",
+                  },
+                  "&:disabled": {
+                    background: "rgba(255, 255, 255, 0.1)",
+                    color: "rgba(255, 255, 255, 0.4)",
                   },
                   transition: "all 0.2s",
                 }}
               >
-                Send Message
+                {isSubmitting ? (
+                  <CircularProgress size={24} color="inherit" />
+                ) : (
+                  "Send Message"
+                )}
               </Button>
             </Box>
           </Paper>
         </Box>
       </Container>
+      
+      <Snackbar
+        open={alert.open}
+        autoHideDuration={6000}
+        onClose={handleCloseAlert}
+        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+      >
+        <Alert
+          onClose={handleCloseAlert}
+          severity={alert.severity}
+          variant="filled"
+          sx={{ width: "100%" }}
+        >
+          {alert.message}
+        </Alert>
+      </Snackbar>
     </Box>
   );
 } 
