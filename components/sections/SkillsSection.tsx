@@ -50,7 +50,7 @@ const categories = [
       { name: "React.js", proficiency: 90, color: "linear-gradient(45deg, #61dafb, #00bcd4)" },
       { name: "SwiftUI", proficiency: 90, color: "linear-gradient(45deg, #ffac45, #ff6b6b)" },
       { name: "Flask", proficiency: 80, color: "linear-gradient(45deg, #000000, #4CAF50)" },
-      { name: "Remix", proficiency: 70, color: "linear-gradient(45deg, #e91e63, #ff4081)" },
+      { name: "React Native", proficiency: 70, color: "linear-gradient(45deg, #61dafb, #2196F3)" },
     ],
   },
   {
@@ -60,8 +60,10 @@ const categories = [
     skills: [
       { name: "Azure", proficiency: 100, color: "linear-gradient(45deg, #0078d4, #00bcd4)" },
       { name: "Vercel", proficiency: 100, color: "linear-gradient(45deg, #000000, #333333)" },
-      { name: "MongoDB", proficiency: 85, color: "linear-gradient(45deg, #4db33d, #8bc34a)" },
+      { name: "MongoDB", proficiency: 90, color: "linear-gradient(45deg, #4db33d, #8bc34a)" },
       { name: "Google Cloud", proficiency: 70, color: "linear-gradient(45deg, #4285f4, #00bcd4)" },
+      { name: "AWS", proficiency: 70, color: "linear-gradient(45deg, #232f3e, #ff9900)" },
+      { name: "Firebase", proficiency: 70, color: "linear-gradient(45deg, #ffca28, #ffc107)" },
     ],
   },
   {

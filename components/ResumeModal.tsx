@@ -15,15 +15,15 @@ export default function ResumeModal({ open, onClose }: ResumeModalProps) {
   
   const handleDownload = () => {
     const link = document.createElement('a');
-    link.href = '/assets/Reiley_Meeks_SoftwareEngineer_Resume.pdf';
-    link.download = 'Reiley_Meeks_SoftwareEngineer_Resume.pdf';
+    link.href = '/assets/Reiley_Meeks_Resume.pdf';
+    link.download = 'Reiley_Meeks_Resume.pdf';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
   };
   
   const openPdfInNewTab = () => {
-    window.open('/assets/Reiley_Meeks_SoftwareEngineer_Resume.pdf', '_blank');
+    window.open('/assets/Reiley_Meeks_Resume.pdf', '_blank');
   };
   
   // On mobile, open PDF in new tab instead of showing modal
@@ -95,7 +95,7 @@ export default function ResumeModal({ open, onClose }: ResumeModalProps) {
         </Box>
         <Box
           component="iframe"
-          src="/assets/Reiley_Meeks_SoftwareEngineer_Resume.pdf"
+          src="/assets/Reiley_Meeks_Resume.pdf"
           sx={{
             width: '100%',
             height: '100%',

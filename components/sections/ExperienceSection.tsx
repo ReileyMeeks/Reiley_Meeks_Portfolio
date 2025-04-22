@@ -17,9 +17,32 @@ const cardVariants = {
 
 const experiences = [
   {
+    title: "Co-Founder & Chief Technology Officer @",
+    company: "Homelore",
+    date: "March 2025",
+    location: "Charlotte, NC",
+    description: [
+      "Led the definition and implementation of the full technical stack, selecting Azure, Next.js, MongoDB, and Azure Functions to ensure scalability, maintainability, and seamless integration across services.",
+      "Architected and built custom authentication solutions using MongoDB integrated with Azure Functions, ensuring robust security and efficient user management.",
+      "Strategically guided the product vision, ensuring technology alignment with business objectives, and enabling data-driven insights for predictive home maintenance analytics.",
+      "Designed and managed CI/CD pipelines with GitHub Actions, streamlining deployments and reducing time-to-market for new features and iterative updates.",
+    ],
+  },
+  {
+    title: "Founding Software Engineer @",
+    company: "Amiqo",
+    date: "April 2025",
+    location: "Charlotte, NC",
+    description: [
+      "Built and enhanced Amiqo’s mobile application using React Native, ensuring seamless cross-platform performance and intuitive user experiences.",
+      "Led ongoing application refinement, developing scalable solutions, enhancing existing features, and proactively addressing performance bottlenecks and bugs.",
+      "Collaborated directly with product and design teams to rapidly prototype, test, and deploy new app features, significantly accelerating product iteration cycles.",
+    ],
+  },
+  {
     title: "Software Engineer/Full Stack Developer @",
     company: "Trane Technologies",
-    date: "January 2024",
+    date: "January 2024 - March 2025",
     location: "Davidson, NC",
     description: [
       "Built and deployed a full-stack final inspection system with Next.js and MongoDB, delivering seamless automation and integration between sales and factories.",
