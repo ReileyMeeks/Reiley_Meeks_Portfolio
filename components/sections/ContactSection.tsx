@@ -73,7 +73,9 @@ export default function ContactSection() {
     severity: "success",
   });
 
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
@@ -87,7 +89,7 @@ export default function ContactSection() {
       });
     }
   };
-  
+
   const handleSelectChange = (e: SelectChangeEvent) => {
     const { name, value } = e.target;
     setFormData({
@@ -110,14 +112,14 @@ export default function ContactSection() {
       contactReason: !formData.contactReason,
       message: !formData.message,
     };
-    
+
     setErrors(newErrors);
     return !Object.values(newErrors).some(Boolean);
   };
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    
+
     if (!validateForm()) {
       setAlert({
         open: true,
@@ -126,9 +128,9 @@ export default function ContactSection() {
       });
       return;
     }
-    
+
     setIsSubmitting(true);
-    
+
     try {
       // Prepare form data for sending
       const templateParams = {
@@ -140,23 +142,23 @@ export default function ContactSection() {
 
       // For testing purposes, let's always use the main endpoint
       // Client-side environment variables need to be prefixed with NEXT_PUBLIC_
-      const endpoint = '/api/contact';
-      
+      const endpoint = "/api/contact";
+
       console.log(`Sending form submission to: ${endpoint}`);
 
       // Send the email using fetch to your own API endpoint
       const response = await fetch(endpoint, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(templateParams),
       });
 
       if (!response.ok) {
         const errorData = await response.json();
-        console.error('API error response:', errorData);
-        throw new Error(errorData.error || 'Failed to send message');
+        console.error("API error response:", errorData);
+        throw new Error(errorData.error || "Failed to send message");
       }
 
       // Reset form on success
@@ -166,7 +168,7 @@ export default function ContactSection() {
         contactReason: "",
         message: "",
       });
-      
+
       setAlert({
         open: true,
         message: "Your message has been sent! I'll get back to you soon.",
@@ -258,6 +260,7 @@ export default function ContactSection() {
               background: "rgba(255, 255, 255, 0.1)",
               backdropFilter: "blur(10px)",
               border: "1px solid rgba(255, 255, 255, 0.1)",
+              borderRadius: "24px",
               p: 4,
               maxWidth: "800px",
               width: "100%",
@@ -268,7 +271,8 @@ export default function ContactSection() {
                 left: 0,
                 right: 0,
                 bottom: 0,
-                background: "linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent)",
+                background:
+                  "linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent)",
                 transform: "translateX(-100%)",
                 transition: "transform 0.6s",
               },
@@ -299,8 +303,10 @@ export default function ContactSection() {
                 sx={{
                   "& .MuiOutlinedInput-root": {
                     color: "white",
+                    borderRadius: "16px",
                     "& fieldset": {
                       borderColor: "rgba(255, 255, 255, 0.2)",
+                      borderRadius: "16px",
                     },
                     "&:hover fieldset": {
                       borderColor: "rgba(255, 255, 255, 0.3)",
@@ -334,8 +340,10 @@ export default function ContactSection() {
                 sx={{
                   "& .MuiOutlinedInput-root": {
                     color: "white",
+                    borderRadius: "16px",
                     "& fieldset": {
                       borderColor: "rgba(255, 255, 255, 0.2)",
+                      borderRadius: "16px",
                     },
                     "&:hover fieldset": {
                       borderColor: "rgba(255, 255, 255, 0.3)",
@@ -375,8 +383,10 @@ export default function ContactSection() {
                   onChange={handleSelectChange}
                   sx={{
                     color: "white",
+                    borderRadius: "16px",
                     "& .MuiOutlinedInput-notchedOutline": {
                       borderColor: "rgba(255, 255, 255, 0.2)",
+                      borderRadius: "16px",
                     },
                     "&:hover .MuiOutlinedInput-notchedOutline": {
                       borderColor: "rgba(255, 255, 255, 0.3)",
@@ -393,7 +403,10 @@ export default function ContactSection() {
                   ))}
                 </Select>
                 {errors.contactReason && (
-                  <Typography variant="caption" sx={{ color: "#f44336", ml: 2, mt: 0.5 }}>
+                  <Typography
+                    variant="caption"
+                    sx={{ color: "#f44336", ml: 2, mt: 0.5 }}
+                  >
                     Please select a contact reason
                   </Typography>
                 )}
@@ -413,8 +426,10 @@ export default function ContactSection() {
                 sx={{
                   "& .MuiOutlinedInput-root": {
                     color: "white",
+                    borderRadius: "16px",
                     "& fieldset": {
                       borderColor: "rgba(255, 255, 255, 0.2)",
+                      borderRadius: "16px",
                     },
                     "&:hover fieldset": {
                       borderColor: "rgba(255, 255, 255, 0.3)",
@@ -441,12 +456,15 @@ export default function ContactSection() {
                 disabled={isSubmitting}
                 fullWidth
                 sx={{
-                  background: "linear-gradient(to right, rgba(128, 90, 213, 0.8), rgba(49, 130, 206, 0.8))",
+                  background:
+                    "linear-gradient(to right, rgba(128, 90, 213, 0.8), rgba(49, 130, 206, 0.8))",
                   backdropFilter: "blur(10px)",
                   border: "1px solid rgba(255, 255, 255, 0.1)",
+                  borderRadius: "9999px",
                   color: "white",
                   "&:hover": {
-                    background: "linear-gradient(to right, rgba(128, 90, 213, 0.9), rgba(49, 130, 206, 0.9))",
+                    background:
+                      "linear-gradient(to right, rgba(128, 90, 213, 0.9), rgba(49, 130, 206, 0.9))",
                     transform: "translateY(-2px)",
                     boxShadow: "0 4px 20px rgba(0, 0, 0, 0.2)",
                   },
@@ -467,7 +485,7 @@ export default function ContactSection() {
           </Paper>
         </Box>
       </Container>
-      
+
       <Snackbar
         open={alert.open}
         autoHideDuration={6000}
@@ -485,4 +503,4 @@ export default function ContactSection() {
       </Snackbar>
     </Box>
   );
-} 
+}

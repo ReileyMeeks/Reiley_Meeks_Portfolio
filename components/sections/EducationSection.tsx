@@ -4,12 +4,20 @@ import { motion } from "framer-motion";
 
 const containerVariants = {
   hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { staggerChildren: 0.2, delayChildren: 0.2 } },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { staggerChildren: 0.2, delayChildren: 0.2 },
+  },
 };
 
 const cardVariants = {
   hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] } },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] },
+  },
 };
 
 const educationData = [
@@ -69,6 +77,7 @@ export default function EducationSection() {
                   background: "rgba(255, 255, 255, 0.1)",
                   backdropFilter: "blur(10px)",
                   border: "1px solid rgba(255, 255, 255, 0.1)",
+                  borderRadius: "24px",
                   p: 4,
                   "&::before": {
                     content: '""',
@@ -77,7 +86,8 @@ export default function EducationSection() {
                     left: 0,
                     right: 0,
                     bottom: 0,
-                    background: "linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent)",
+                    background:
+                      "linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent)",
                     transform: "translateX(-100%)",
                     transition: "transform 0.6s",
                   },
@@ -86,14 +96,23 @@ export default function EducationSection() {
                   },
                 }}
               >
-                <Typography variant="h5" sx={{ fontWeight: "bold", color: "white" }}>
+                <Typography
+                  variant="h5"
+                  sx={{ fontWeight: "bold", color: "white" }}
+                >
                   {edu.degree}
                 </Typography>
-                <Typography variant="subtitle1" sx={{ color: "rgba(255,255,255,0.8)" }}>
+                <Typography
+                  variant="subtitle1"
+                  sx={{ color: "rgba(255,255,255,0.8)" }}
+                >
                   {edu.institution} | {edu.date}
                 </Typography>
                 {edu.details && (
-                  <Typography variant="body1" sx={{ color: "rgba(255,255,255,0.8)", mt: 1 }}>
+                  <Typography
+                    variant="body1"
+                    sx={{ color: "rgba(255,255,255,0.8)", mt: 1 }}
+                  >
                     {edu.details}
                   </Typography>
                 )}

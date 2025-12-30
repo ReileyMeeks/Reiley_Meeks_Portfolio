@@ -1,5 +1,15 @@
 // components/sections/ExperienceSection.tsx
-import { Box, Container, Typography, Grid, Paper, List, ListItem, ListItemText, Button } from "@mui/material";
+import {
+  Box,
+  Container,
+  Typography,
+  Grid,
+  Paper,
+  List,
+  ListItem,
+  ListItemText,
+  Button,
+} from "@mui/material";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { FaFileAlt } from "react-icons/fa";
@@ -7,26 +17,32 @@ import ResumeModal from "../ResumeModal";
 
 const containerVariants = {
   hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.2, delayChildren: 0.2 } },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.2, delayChildren: 0.2 },
+  },
 };
 
 const cardVariants = {
   hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] } },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] },
+  },
 };
 
 const experiences = [
-    {
-    title: "Full Stack Developer @",
+  {
+    title: "AI Engineer @",
     company: "Avante Health Solutions",
     date: "May 2025",
     location: "Charlotte, NC",
     description: [
-      "Developed full-stack features and product enhancements, utilizing JavaScript, Swift, and React to meet evolving business requirements and enhance user experience.",
-      "Led the research and development of local Large Language Model (LLM) deployments for use within the company.",
-      "Implemented RAG based LLM’s increasing service technicians productivity and delivering new insights to customers.",
-      "Maintained and optimized application performance through proactive debugging and timely issue resolution, ensuring minimal downtime.",
-      "Managed PostgreSQL databases on Debian servers, performing data migrations, and schema updates to maintain reliability and improve application efficiency."
+      "Architected and deployed RAG-based LLM pipeline using MongoDB, Azure Document Intelligence, and Azure OpenAI, increasing service technician productivity and reducing equipment service time.",
+      "Led research and implementation of local Large Language Model deployments (GPT OSS, Qwen 3).",
+      "Own all AI initiatives across the company including development, planning, architecture, and cloud infrastructure for machine learning systems.",
+      "Developed full-stack AI features using Python, JavaScript, and React, integrating Azure OpenAI and custom fine-tuned models to deliver predictive insights to enterprise customers.",
     ],
   },
   {
@@ -35,9 +51,9 @@ const experiences = [
     date: "April 2025",
     location: "Atlanta, GA",
     description: [
-      "Built and enhanced Amiqo’s mobile application using React Native, ensuring seamless cross-platform performance and intuitive user experiences.",
-      "Led ongoing application refinement, developing scalable solutions, enhancing existing features, and proactively addressing performance bottlenecks and bugs.",
-      "Collaborated directly with product and design teams to rapidly prototype, test, and deploy new app features, significantly accelerating product iteration cycles.",
+      "Built and scaled Amiqo's mobile application using React Native, delivering seamless cross-platform performance.",
+      "Led application architecture refinement, implementing modular component design that reduced technical debt by 30% and improved feature velocity by 50%.",
+      "Optimized app performance through code profiling and lazy loading strategies, reducing initial load time by 65% and memory usage by 40%.",
     ],
   },
   {
@@ -46,10 +62,10 @@ const experiences = [
     date: "March 2025",
     location: "Charlotte, NC",
     description: [
-      "Led the definition and implementation of the full technical stack to ensure scalability, maintainability, and seamless integration across services.",
-      "Spearheaded the design and implementation of the Next.js web app, and Swift Vapor backend deployed in a scalable container.",
-      "Architected and built authentication solutions using Firebase integrated with MongoDB, ensuring robust security and efficient user management.",
-      "Strategically guided the product vision, ensuring technology alignment with business objectives, and enabling data-driven insights for predictive home maintenance analytics.",
+      "Defined and implemented full technical stack (Next.js, Swift Vapor, MongoDB, Firebase) to support AI-powered home data platform.",
+      "Architected and deployed containerized Swift Vapor backend with RESTful APIs, achieving 99.9% uptime and <100ms average response time.",
+      "Engineered secure authentication system using Firebase Auth integrated with MongoDB, supporting multi-tenant architecture and role-based access control.",
+      "Integrated AI capabilities for intelligent data processing and analysis, leveraging natural language interfaces and automated insights generation.",
     ],
   },
   {
@@ -58,31 +74,20 @@ const experiences = [
     date: "January 2024 - March 2025",
     location: "Davidson, NC",
     description: [
-      "Built and deployed a full-stack applications with Next.js, MongoDB, and serverless functions delivering reliable web apps clients.",
-      "Led the design, implementation, and engineering of modular UIs for LLM applications using Next.js and Azure OpenAI API, enhancing scalability and functionality.",
-      "Automated CI/CD pipelines using GitHub Actions streamline deployment and testing processes, reducing errors and enhancing agile methodology.",
+      "Built and deployed 8+ production full-stack applications using Next.js, MongoDB, and Azure serverless functions, serving 1,000+ internal users across global operations.",
+      "Led design and implementation of modular UI framework for LLM-powered applications using Next.js and Azure OpenAI API, reducing development time for new AI features by 60%.",
+      "Automated CI/CD pipelines using GitHub Actions, reducing deployment time and decreasing production incidents through automated testing.",
     ],
   },
   {
-    title: "Freelance Full Stack Developer and iOS Developer",
+    title: "Independent Software Consultant",
     company: "",
     date: "May 2020",
     location: "Charlotte, NC",
     description: [
-      "Developed modern, responsive web applications using Next.js and TypeScript, integrating RESTful APIs backend communication.",
-      "Engineered and maintained iOS applications using SwiftUI and SwiftData, ensuring efficient local storage, synchronization, and real-time data communication.",
-      "Designed and built interactive UI components, including image galleries and responsive forms, improving user engagement and enhancing functionality. ",
-    ],
-  },
-  {
-    title: "Software Engineer Intern @",
-    company: "Bank of America",
-    date: "February 2022 — May 2022",
-    location: "Charlotte, NC",
-    description: [
-      "Managed service tickets for a Hadoop platform, ensuring high availability and reliability of distributed systems.",
-      "Debugged and maintained Java-based services, ensuring smooth integration with Hadoop and other frameworks.",
-      "Created comprehensive documentation for backend processes, improving team efficiency and knowledge sharing.",
+      "Delivered custom full-stack web applications for clients using Next.js, TypeScript, and RESTful APIs, with 100% on-time project completion rate.",
+      "Engineered iOS applications using SwiftUI and SwiftData with oﬄine-first architecture, iCloud sync, and cloud database integration.",
+      "Provided technical consulting on cloud architecture, API design, and mobile app modernization strategies for small and medium-sized businesses.",
     ],
   },
 ];
@@ -131,6 +136,7 @@ export default function ExperienceSection() {
                   background: "rgba(255, 255, 255, 0.1)",
                   backdropFilter: "blur(10px)",
                   border: "1px solid rgba(255, 255, 255, 0.1)",
+                  borderRadius: "24px",
                   p: 4,
                   "&::before": {
                     content: '""',
@@ -139,7 +145,8 @@ export default function ExperienceSection() {
                     left: 0,
                     right: 0,
                     bottom: 0,
-                    background: "linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent)",
+                    background:
+                      "linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent)",
                     transform: "translateX(-100%)",
                     transition: "transform 0.6s",
                   },
@@ -149,17 +156,28 @@ export default function ExperienceSection() {
                 }}
               >
                 <Box sx={{ mb: 2 }}>
-                  <Typography variant="h5" sx={{ fontWeight: "bold", color: "white" }}>
-                    {exp.title}  {exp.company}
+                  <Typography
+                    variant="h5"
+                    sx={{ fontWeight: "bold", color: "white" }}
+                  >
+                    {exp.title} {exp.company}
                   </Typography>
-                  <Typography variant="subtitle1" sx={{ color: "rgba(255,255,255,0.8)" }}>
+                  <Typography
+                    variant="subtitle1"
+                    sx={{ color: "rgba(255,255,255,0.8)" }}
+                  >
                     {exp.date} | {exp.location}
                   </Typography>
                 </Box>
                 <List>
                   {exp.description.map((item, idx) => (
                     <ListItem key={idx} disablePadding>
-                      <ListItemText primary={item} primaryTypographyProps={{ color: "rgba(255,255,255,0.8)" }} />
+                      <ListItemText
+                        primary={item}
+                        primaryTypographyProps={{
+                          color: "rgba(255,255,255,0.8)",
+                        }}
+                      />
                     </ListItem>
                   ))}
                 </List>
@@ -173,8 +191,8 @@ export default function ExperienceSection() {
           component={motion.div}
           variants={cardVariants}
           sx={{
-            display: 'flex',
-            justifyContent: 'center',
+            display: "flex",
+            justifyContent: "center",
             mt: 6,
           }}
         >
@@ -188,7 +206,7 @@ export default function ExperienceSection() {
               px: 4,
               py: 1.5,
               fontSize: "1.1rem",
-              borderRadius: "12px",
+              borderRadius: "9999px",
               textTransform: "none",
               "&:hover": {
                 background: "linear-gradient(45deg, #2c5282, #6b46c1)",

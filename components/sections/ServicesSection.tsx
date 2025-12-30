@@ -30,22 +30,26 @@ const services = [
   {
     title: "Web/Mobile Application",
     icon: FaCode,
-    description: "Custom web and mobile applications built with modern technologies like Next.js, React, and SwiftUI. Focus on performance, scalability, and user experience.",
+    description:
+      "Custom web and mobile applications built with modern technologies like Next.js, React, and SwiftUI. Focus on performance, scalability, and user experience.",
   },
   {
     title: "AI Chatbot",
     icon: FaRobot,
-    description: "Intelligent chatbot solutions powered by advanced AI models. Perfect for customer service, automation, and enhancing user engagement.",
+    description:
+      "Intelligent chatbot solutions powered by advanced AI models. Perfect for customer service, automation, and enhancing user engagement.",
   },
   {
     title: "Tech Consulting",
     icon: FaHandshake,
-    description: "Expert guidance on technology stack selection, architecture design, and implementation strategies to optimize your business solutions.",
+    description:
+      "Expert guidance on technology stack selection, architecture design, and implementation strategies to optimize your business solutions.",
   },
   {
     title: "UI/UX Design",
     icon: FaPalette,
-    description: "Beautiful and intuitive user interfaces designed with modern aesthetics and user-centered principles. Focus on accessibility and user engagement.",
+    description:
+      "Beautiful and intuitive user interfaces designed with modern aesthetics and user-centered principles. Focus on accessibility and user engagement.",
   },
 ];
 
@@ -118,6 +122,7 @@ export default function ServicesSection() {
                     background: "rgba(255, 255, 255, 0.1)",
                     backdropFilter: "blur(10px)",
                     border: "1px solid rgba(255, 255, 255, 0.1)",
+                    borderRadius: "24px",
                     p: 4,
                     height: "100%",
                     "&::before": {
@@ -127,7 +132,8 @@ export default function ServicesSection() {
                       left: 0,
                       right: 0,
                       bottom: 0,
-                      background: "linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent)",
+                      background:
+                        "linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent)",
                       transform: "translateX(-100%)",
                       transition: "transform 0.6s",
                     },
@@ -183,4 +189,4 @@ export default function ServicesSection() {
       </Container>
     </Box>
   );
-} 
+}

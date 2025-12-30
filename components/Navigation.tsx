@@ -1,5 +1,5 @@
 // components/Navigation.tsx
-"use client"; 
+"use client";
 
 import { useState, useRef } from "react";
 import { Box, IconButton, Typography } from "@mui/material";
@@ -26,8 +26,8 @@ const containerVariants = {
     transition: { type: "spring", stiffness: 200, damping: 25, mass: 0.5 },
   },
   open: {
-    width: "200px",       // Adjust as desired
-    height: "350px",       // Let the content determine the height
+    width: "200px", // Adjust as desired
+    height: "350px", // Let the content determine the height
     borderRadius: "30px",
     transition: { type: "spring", stiffness: 200, damping: 25, mass: 0.5 },
   },
@@ -43,7 +43,7 @@ export default function Navigation() {
   const scrollToSection = (sectionId: string) => {
     // Set hash in URL to trigger native browser scroll
     window.location.hash = sectionId;
-    
+
     // Close the menu
     setIsOpen(false);
   };
@@ -127,7 +127,7 @@ export default function Navigation() {
                     padding: "5px 12px",
                     "&:hover": {
                       backgroundColor: "rgba(255,255,255,0.2)",
-                      borderRadius: "20px",
+                      borderRadius: "9999px",
                     },
                   }}
                 >
